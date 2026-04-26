@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mediaLab4 - WebRTC realtime filters</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">mediaLab4 / WebRTC</p>
+        <h1>Realtime camera filters</h1>
+        <p class="lead">
+          WebRTC getUserMedia video stream with CSS filters and an additional realtime Sobel Edge filter.
+        </p>
+      </div>
+      <div class="status-card">
+        <span id="secureStatus" class="badge">Checking HTTPS...</span>
+        <span id="cameraStatus" class="badge muted">Camera not started</span>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Filter controls">
+      <label class="control">
+        <span>Filter</span>
+        <select id="filter">
+          <option value="none">None</option>
+          <option value="blur">Blur</option>
+          <option value="grayscale">Grayscale</option>
+          <option value="invert">Invert</option>
+          <option value="sepia">Sepia</option>
+          <option value="sobel">Sobel Edge</option>
+        </select>
+      </label>
+
+      <label class="control range-control">
+        <span>Edge threshold: <strong id="thresholdValue">80</strong></span>
+        <input id="threshold" type="range" min="0" max="255" value="80">
+      </label>
+
+      <label class="control range-control">
+        <span>Edge gain: <strong id="gainValue">1.6</strong>x</span>
+        <input id="gain" type="range" min="0.2" max="5" step="0.1" value="1.6">
+      </label>
+
+      <div class="button-row">
+        <button id="startCamera" type="button">Start camera</button>
+        <button id="stopCamera" type="button" class="secondary">Stop camera</button>
+        <button id="snapshot" type="button" class="secondary">Take snapshot</button>
+      </div>
+    </section>
+
+    <section class="stage">
+      <video id="video" autoplay playsinline muted></video>
+      <canvas id="output" width="640" height="480" aria-label="Filtered camera output"></canvas>
+      <div id="errorBox" class="error-box" hidden></div>
+    </section>
+
+    <section class="snapshot-panel" aria-label="Snapshot preview">
+      <div>
+        <h2>Snapshot</h2>
+        <p>Press <strong>Take snapshot</strong> to copy the current filtered frame.</p>
+        <a id="downloadSnapshot" class="download-link" href="#" download="medialab4-snapshot.png" hidden>Download snapshot</a>
+      </div>
+      <canvas id="snapshotCanvas" width="320" height="240"></canvas>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

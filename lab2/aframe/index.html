@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mediaLab2 - A-Frame VR point cloud</title>
+    <meta name="description" content="VR point cloud scene with an interactive control panel.">
+
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="js/aframe-pointcloud-component.js"></script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #08111f;
+      }
+
+      a-scene {
+        position: fixed !important;
+        inset: 0;
+        z-index: 1;
+      }
+
+      .control-panel {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 9999;
+        width: min(340px, calc(100vw - 32px));
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 14px;
+        background: rgba(8, 17, 31, 0.88);
+        color: #f4f7fb;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(10px);
+        pointer-events: auto;
+      }
+
+      .control-panel h1 {
+        margin: 0 0 6px;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .control-panel p {
+        margin: 0 0 12px;
+        color: #c8d4e3;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      button {
+        min-height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.11);
+        color: #ffffff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button:hover,
+      button:focus-visible {
+        background: rgba(76, 144, 255, 0.38);
+        outline: none;
+      }
+
+      .wide {
+        grid-column: 1 / -1;
+      }
+
+      .status {
+        margin-top: 12px;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #dbe7f6;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .keyboard-help {
+        margin-top: 10px;
+        color: #aebbd0;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene renderer="antialias: true; colorManagement: true" background="color: #08111f">
+      <a-assets>
+        <img id="pointTexture" src="VGTU-logo.png" alt="Point texture">
+      </a-assets>
+
+      <a-sky color="#0d1b2a"></a-sky>
+      <a-plane
+        position="0 0 -3"
+        rotation="-90 0 0"
+        width="18"
+        height="18"
+        color="#14213d"
+        material="roughness: 1; metalness: 0">
+      </a-plane>
+
+      <a-entity light="type: ambient; intensity: 0.75; color: #cfe3ff"></a-entity>
+      <a-entity light="type: directional; intensity: 1.2; color: #ffffff" position="-2 5 3"></a-entity>
+      <a-entity light="type: point; intensity: 0.8; color: #8ecaff" position="2 3 -1"></a-entity>
+
+      <a-entity position="0 0.02 -3">
+        <a-ring radius-inner="1.35" radius-outer="1.38" rotation="-90 0 0" color="#4cc9f0" opacity="0.55"></a-ring>
+        <a-ring radius-inner="2.35" radius-outer="2.38" rotation="-90 0 0" color="#4361ee" opacity="0.35"></a-ring>
+        <a-ring radius-inner="3.15" radius-outer="3.18" rotation="-90 0 0" color="#72efdd" opacity="0.22"></a-ring>
+      </a-entity>
+
+      <a-pointcloud
+        id="pointCloud"
+        src="url(sculpt.ply)"
+        depthwrite="false"
+        size="0.012"
+        opacity="0.95"
+        position="0 1.2 -3"
+        rotation="-90 25 0"
+        scale="0.12 0.12 0.12">
+      </a-pointcloud>
+
+      <a-entity id="cameraRig" position="0 1.6 0">
+        <a-camera wasd-controls-enabled="true" look-controls="pointerLockEnabled: false"></a-camera>
+      </a-entity>
+    </a-scene>
+
+    <aside class="control-panel" aria-label="VR object controls">
+      <h1>Point cloud controls</h1>
+      <p>Use the panel to rotate, move, zoom, hide/load, auto-spin, and reset the point cloud model.</p>
+
+      <div class="button-grid">
+        <button type="button" data-action="rotate-left">Rotate left</button>
+        <button type="button" data-action="rotate-right">Rotate right</button>
+        <button type="button" data-action="move-left">Move left</button>
+        <button type="button" data-action="move-right">Move right</button>
+        <button type="button" data-action="move-up">Move up</button>
+        <button type="button" data-action="move-down">Move down</button>
+        <button type="button" data-action="move-forward">Move forward</button>
+        <button type="button" data-action="move-back">Move back</button>
+        <button type="button" data-action="zoom-in">Zoom in</button>
+        <button type="button" data-action="zoom-out">Zoom out</button>
+        <button type="button" data-action="toggle-spin">Auto-rotate</button>
+        <button type="button" data-action="toggle-model">Hide object</button>
+        <button class="wide" type="button" data-action="reset">Reset model</button>
+      </div>
+
+      <div id="status" class="status" aria-live="polite">Loading model...</div>
+      <div class="keyboard-help">Keyboard: A/D rotate, arrows move, +/- zoom, Space auto-rotate, R reset.</div>
+    </aside>
+
+    <script>
+      (function () {
+        const defaults = {
+          position: { x: 0, y: 1.2, z: -3 },
+          rotation: { x: -90, y: 25, z: 0 },
+          scale: 0.12,
+          visible: true
+        };
+
+        const state = {
+          position: { ...defaults.position },
+          rotation: { ...defaults.rotation },
+          scale: defaults.scale,
+          visible: defaults.visible
+        };
+
+        let autoRotateTimer = null;
+
+        const model = document.querySelector('#pointCloud');
+        const status = document.querySelector('#status');
+        const toggleModelButton = document.querySelector('[data-action="toggle-model"]');
+        const toggleSpinButton = document.querySelector('[data-action="toggle-spin"]');
+
+        function round(value) {
+          return Math.round(value * 100) / 100;
+        }
+
+        function vectorToString(value) {
+          return `${value.x} ${value.y} ${value.z}`;
+        }
+
+        function updateStatus(message) {
+          status.textContent = `${message} Position: x ${round(state.position.x)}, y ${round(state.position.y)}, z ${round(state.position.z)}. Rotation: x ${round(state.rotation.x)}°, y ${round(state.rotation.y)}°. Scale: ${round(state.scale)}.`;
+        }
+
+        function applyState(message) {
+          if (!model) return;
+
+          model.setAttribute('position', vectorToString(state.position));
+          model.setAttribute('rotation', vectorToString(state.rotation));
+          model.setAttribute('scale', `${state.scale} ${state.scale} ${state.scale}`);
+          model.setAttribute('visible', state.visible);
+
+          if (model.object3D) {
+            model.object3D.visible = state.visible;
+          }
+
+          if (message) {
+            updateStatus(message);
+          }
+        }
+
+        function rotate(degrees) {
+          state.rotation.y += degrees;
+          applyState('Rotated model.');
+        }
+
+        function move(dx, dy, dz) {
+          state.position.x += dx;
+          state.position.y += dy;
+          state.position.z += dz;
+          applyState('Moved model.');
+        }
+
+        function zoom(multiplier) {
+          state.scale = Math.min(0.35, Math.max(0.035, state.scale * multiplier));
+          applyState('Changed zoom.');
+        }
+
+        function resetModel() {
+          state.position = { ...defaults.position };
+          state.rotation = { ...defaults.rotation };
+          state.scale = defaults.scale;
+          state.visible = defaults.visible;
+          toggleModelButton.textContent = 'Hide object';
+          applyState('Reset complete.');
+        }
+
+        function toggleModel() {
+          state.visible = !state.visible;
+          toggleModelButton.textContent = state.visible ? 'Hide object' : 'Load object';
+          applyState(state.visible ? 'Object loaded.' : 'Object hidden.');
+        }
+
+        function toggleSpin() {
+          if (autoRotateTimer) {
+            window.clearInterval(autoRotateTimer);
+            autoRotateTimer = null;
+            toggleSpinButton.textContent = 'Auto-rotate';
+            updateStatus('Auto-rotate stopped.');
+            return;
+          }
+
+          autoRotateTimer = window.setInterval(() => {
+            state.rotation.y += 3;
+            applyState();
+          }, 80);
+          toggleSpinButton.textContent = 'Stop auto-rotate';
+          updateStatus('Auto-rotate started.');
+        }
+
+        const actions = {
+          'rotate-left': () => rotate(-25),
+          'rotate-right': () => rotate(25),
+          'move-left': () => move(-0.35, 0, 0),
+          'move-right': () => move(0.35, 0, 0),
+          'move-up': () => move(0, 0.25, 0),
+          'move-down': () => move(0, -0.25, 0),
+          'move-forward': () => move(0, 0, -0.35),
+          'move-back': () => move(0, 0, 0.35),
+          'zoom-in': () => zoom(1.2),
+          'zoom-out': () => zoom(0.84),
+          'toggle-spin': toggleSpin,
+          'toggle-model': toggleModel,
+          'reset': resetModel
+        };
+
+        document.querySelectorAll('[data-action]').forEach((button) => {
+          button.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const action = actions[button.dataset.action];
+            if (action) action();
+          });
+        });
+
+        window.addEventListener('keydown', (event) => {
+          const keyActions = {
+            a: () => rotate(-25),
+            A: () => rotate(-25),
+            d: () => rotate(25),
+            D: () => rotate(25),
+            ArrowLeft: () => move(-0.35, 0, 0),
+            ArrowRight: () => move(0.35, 0, 0),
+            ArrowUp: () => move(0, 0, -0.35),
+            ArrowDown: () => move(0, 0, 0.35),
+            '+': () => zoom(1.2),
+            '=': () => zoom(1.2),
+            '-': () => zoom(0.84),
+            ' ': toggleSpin,
+            r: resetModel,
+            R: resetModel
+          };
+
+          if (keyActions[event.key]) {
+            event.preventDefault();
+            keyActions[event.key]();
+          }
+        });
+
+        model.addEventListener('loaded', () => {
+          applyState('Model ready.');
+        });
+
+        model.addEventListener('model-error', () => {
+          updateStatus('Model failed to load. Start the app through a local web server.');
+        });
+
+        applyState('Controls ready.');
+      })();
+    </script>
+  </body>
+</html>

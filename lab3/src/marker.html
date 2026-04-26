@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiro marker</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        main {
+            max-width: 680px;
+            margin: 24px;
+            padding: 24px;
+            border-radius: 16px;
+            background: #ffffff;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        p {
+            margin: 0 0 18px;
+            line-height: 1.45;
+        }
+
+        img {
+            width: min(82vw, 460px);
+            max-width: 100%;
+            border: 1px solid #d1d5db;
+        }
+
+        button {
+            margin-top: 18px;
+            border: 0;
+            border-radius: 999px;
+            padding: 11px 18px;
+            background: #111827;
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            main {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            h1, p, button {
+                display: none;
+            }
+
+            img {
+                width: 14cm;
+                border: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Hiro marker</h1>
+        <p>Open this marker on another screen or print it. Then point the AR camera page at this black-and-white square.</p>
+        <img src="data/hiro-marker.jpg" alt="Hiro AR marker">
+        <br>
+        <button type="button" onclick="window.print()">Print marker</button>
+    </main>
+</body>
+</html>

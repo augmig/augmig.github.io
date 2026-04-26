@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mediaLab5 - Server stream</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main class="app compact">
+    <header class="hero small">
+      <div>
+        <p class="eyebrow">mediaLab5 / Server page</p>
+        <h1>Capture camera and create WebRTC offer</h1>
+        <p class="lead">This page acts as the video source. It captures webcam video and sends it to the client page through RTCPeerConnection.</p>
+      </div>
+      <a class="back-link" href="index.html">Back</a>
+    </header>
+
+    <section class="workspace two-columns">
+      <div class="video-panel">
+        <div class="video-frame">
+          <video id="localVideo" autoplay playsinline muted></video>
+          <div id="videoPlaceholder" class="placeholder">Camera preview will appear here</div>
+        </div>
+        <div class="controls">
+          <button id="startButton" type="button">Start camera and create offer</button>
+          <button id="stopButton" type="button" class="secondary" disabled>Stop camera</button>
+        </div>
+        <div class="status-line">
+          <span>Status:</span>
+          <strong id="statusText">Not started</strong>
+        </div>
+      </div>
+
+      <div class="signal-panel">
+        <section class="signal-card">
+          <div class="signal-header">
+            <h2>1. Offer SDP</h2>
+            <button id="copyOfferButton" type="button" class="secondary small-button" disabled>Copy offer</button>
+          </div>
+          <textarea id="offerBox" readonly placeholder="After pressing Start, the offer SDP appears here."></textarea>
+        </section>
+
+        <section class="signal-card">
+          <div class="signal-header">
+            <h2>2. Client answer SDP</h2>
+            <button id="connectButton" type="button" class="small-button" disabled>Connect answer</button>
+          </div>
+          <textarea id="answerBox" placeholder="Paste the answer SDP from client.html here."></textarea>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/server.js"></script>
+</body>
+</html>

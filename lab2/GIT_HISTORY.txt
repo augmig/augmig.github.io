@@ -1,0 +1,16 @@
+# Git history summary
+
+Branches: master, develop
+
+## Recent commits
+9a03258 (HEAD -> master) Merge fixed VR controls
+35d2cc0 (develop) Fix VR control panel buttons
+488fca6 Refresh repository history summary
+ee94818 Merge browser test note update
+153b23c Clarify browser testing notes
+4126b08 Add repository history summary
+2a72c50 Document run instructions and browser testing
+bd13163 Merge develop into master
+3774521 Keep one model and add VR controls
+7ab0c58 Initial lab starter project
+81df6bb Update A-Frame and point cloud component

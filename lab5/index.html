@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mediaLab5 - WebRTC Video Streaming</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">mediaLab5 / WebRTC</p>
+        <h1>Browser-to-browser video streaming</h1>
+        <p class="lead">
+          Server page captures webcam video. Client page receives and displays the stream through RTCPeerConnection.
+        </p>
+      </div>
+      <div class="status-card">
+        <span id="secureStatus" class="badge muted">Checking context...</span>
+        <span class="badge">Manual SDP signaling</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Test steps</h2>
+      <ol class="steps">
+        <li>Open <strong>Server page</strong> in one browser and press <strong>Start camera and create offer</strong>.</li>
+        <li>Copy the generated offer SDP from the server page.</li>
+        <li>Open <strong>Client page</strong> in another browser, paste the offer, and press <strong>Create answer</strong>.</li>
+        <li>Copy the generated answer SDP from the client page back to the server page.</li>
+        <li>Press <strong>Connect answer</strong> on the server page.</li>
+      </ol>
+    </section>
+
+    <section class="cards" aria-label="WebRTC pages">
+      <a class="card" href="server.html">
+        <span class="card-label">Server</span>
+        <h2>Capture video</h2>
+        <p>Creates the offer and sends webcam tracks to the peer connection.</p>
+      </a>
+      <a class="card" href="client.html">
+        <span class="card-label">Client</span>
+        <h2>Display stream</h2>
+        <p>Creates the answer and renders the received video stream.</p>
+      </a>
+    </section>
+  </main>
+
+  <script>
+    const secureStatus = document.getElementById('secureStatus');
+    if (window.isSecureContext || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      secureStatus.textContent = 'Ready';
+      secureStatus.classList.remove('muted');
+    } else {
+      secureStatus.textContent = 'Use HTTPS or localhost';
+      secureStatus.classList.add('warning');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multimedia Systems Labs</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --border: rgba(148, 163, 184, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, var(--bg) 46%, #020617 100%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    main {
+      width: min(920px, 100%);
+      background: rgba(17, 24, 39, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      color: var(--muted);
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.72);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      outline: none;
+    }
+
+    strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Multimedia Systems Labs</h1>
+    <p>Laboratory works page.</p>
+    <nav class="grid" aria-label="Laboratory links">
+      <a href="lab1/index.html"><strong>Lab 1</strong><span>HTML5 HLS player</span></a>
+      <a href="lab2/index.html"><strong>Lab 2</strong><span>VR application</span></a>
+      <a href="lab3/index.html"><strong>Lab 3</strong><span>AR application</span></a>
+      <a href="lab4/index.html"><strong>Lab 4</strong><span>WebRTC filters</span></a>
+      <a href="lab5/index.html"><strong>Lab 5</strong><span>WebRTC video streaming</span></a>
+    </nav>
+  </main>
+</body>
+</html>

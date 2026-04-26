@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mediaLab5 - Client stream</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main class="app compact">
+    <header class="hero small">
+      <div>
+        <p class="eyebrow">mediaLab5 / Client page</p>
+        <h1>Receive and display WebRTC stream</h1>
+        <p class="lead">This page receives the offer from the server page, creates an answer, and displays the incoming webcam stream.</p>
+      </div>
+      <a class="back-link" href="index.html">Back</a>
+    </header>
+
+    <section class="workspace two-columns reverse-on-mobile">
+      <div class="video-panel">
+        <div class="video-frame">
+          <video id="remoteVideo" autoplay playsinline controls></video>
+          <div id="videoPlaceholder" class="placeholder">Remote stream will appear here</div>
+        </div>
+        <div class="status-line">
+          <span>Status:</span>
+          <strong id="statusText">Waiting for offer</strong>
+        </div>
+      </div>
+
+      <div class="signal-panel">
+        <section class="signal-card">
+          <div class="signal-header">
+            <h2>1. Server offer SDP</h2>
+            <button id="createAnswerButton" type="button" class="small-button">Create answer</button>
+          </div>
+          <textarea id="offerBox" placeholder="Paste the offer SDP from server.html here."></textarea>
+        </section>
+
+        <section class="signal-card">
+          <div class="signal-header">
+            <h2>2. Answer SDP</h2>
+            <button id="copyAnswerButton" type="button" class="secondary small-button" disabled>Copy answer</button>
+          </div>
+          <textarea id="answerBox" readonly placeholder="After pressing Create answer, copy this answer back to the server page."></textarea>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/client.js"></script>
+</body>
+</html>
