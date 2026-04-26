@@ -1,36 +1,10 @@
-# mediaLab1
+# Lab 1
 
-HTML5 HLS player laboratory work.
+This lab is a simple HTML5 HLS player. It can play, pause, stop, seek, and switch playlist items.
 
-## Implemented requirements
+Run with a local server from `lab1/src` and open `index.html`.
 
-- HLS player in `src/index.html` using `hls.js`.
-- Default HLS stream: `https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8`.
-- Player controls:
-  - Play
-  - Pause
-  - Stop
-  - Jump 5 seconds forward
-  - Jump 5 seconds backward
-  - Playlist item loading
-  - Shuffle playlist item
+Tested browsers:
 
-## Run
-
-```bash
-cd src
-python -m http.server 8080
-```
-
-Open:
-
-```text
-http://localhost:8080/index.html
-```
-
-## Browser testing
-
-| Browser | Version | Result |
-| --- | --- | --- |
-| Google Chrome |  | Works |
-| Mozilla Firefox |  | Works |
+- Google Chrome on Windows 11
+- Mozilla Firefox on Windows 11
