@@ -1,52 +1,12 @@
-# mediaLab4
+# Lab 4
 
-WebRTC realtime camera filtering laboratory work.
+This lab uses WebRTC camera capture and realtime filters.
 
-## Option
+Available filters include blur, grayscale, invert, sepia, and Sobel edge.
 
-Option A is implemented.
+Run with HTTPS (`node server.js`) and open `lab4/index.html`.
 
-## Implemented requirements
+Tested browsers:
 
-- Camera stream with `navigator.mediaDevices.getUserMedia`.
-- Filters:
-  - None
-  - Blur
-  - Grayscale
-  - Invert
-  - Sepia
-  - Sobel Edge
-- Realtime controls:
-  - edge threshold;
-  - edge gain;
-  - start camera;
-  - stop camera;
-  - take snapshot;
-  - download snapshot.
-
-## Run
-
-Generate a certificate:
-
-```bash
-./generate_cert.sh
-```
-
-Start the HTTPS server:
-
-```bash
-node server.js
-```
-
-Open:
-
-```text
-https://localhost:8443/
-```
-
-## Browser testing
-
-| Browser | Version | Result |
-| --- | --- | --- |
-| Google Chrome |  | Works |
-| Mozilla Firefox / Microsoft Edge |  | Works |
+- Google Chrome on Windows 11
+- Mozilla Firefox on Windows 11
