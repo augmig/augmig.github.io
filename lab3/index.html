@@ -1,17 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lab 3</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    a { display: inline-block; margin-right: 12px; }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>mediaLab3 - AR UGS Station</title>
+    <link rel="stylesheet" href="src/css/index.css">
+
+    <script src="src/js/three.js"></script>
+    <script src="src/jsartoolkit5/artoolkit.min.js"></script>
+    <script src="src/jsartoolkit5/artoolkit.api.js"></script>
+    <script src="src/threex/threex-artoolkitsource.js"></script>
+    <script src="src/threex/threex-artoolkitcontext.js"></script>
+    <script src="src/threex/threex-arbasecontrols.js"></script>
+    <script src="src/threex/threex-armarkercontrols.js"></script>
 </head>
 <body>
-  <h1>Lab 3</h1>
-  <p><a href="src/index.html">Open lab page</a></p>
-  <p><a href="../index.html">Back to main page</a></p>
+    <p style="position:fixed;top:8px;left:8px;z-index:1000;margin:0;"><a href="../index.html" style="background:#111;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;">Back to main page</a></p>
+    <div id="info-panel" class="panel" style="margin-top:44px;">
+        <h1>AR UGS Station</h1>
+        <p>Point the camera at the Hiro marker. A custom complex Three.js model will appear above it. <a class="marker-link" href="src/marker.html" target="_blank" rel="noopener">Open Hiro marker</a></p>
+        <div class="button-row">
+            <button id="toggle-animation" type="button">Pause animation</button>
+            <button id="scale-up" type="button">Scale +</button>
+            <button id="scale-down" type="button">Scale -</button>
+            <button id="change-color" type="button">Change color</button>
+            <button id="reset-model" type="button">Reset</button>
+        </div>
+        <p id="status-message" class="status">Loading AR camera...</p>
+    </div>
+
+    <noscript>This AR application requires JavaScript.</noscript>
+    <script src="src/js/app.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 # Lab 5
 
-This lab shows browser-to-browser video streaming with WebRTC.
+Lab 5 demonstrates WebRTC video streaming between two pages.
 
-- `server.html` captures camera video and creates the offer.
-- `client.html` creates the answer and shows the stream.
+- `server.html` captures camera and creates offer SDP.
+- `client.html` creates answer SDP and receives the stream.
 
-Open `lab5/index.html`, then follow the page steps.
+Open `lab5/index.html` and follow the steps.
 
 Tested browsers:
 
