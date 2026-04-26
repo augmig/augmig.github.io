@@ -1,10 +1,10 @@
 # Lab 4
 
-This lab uses WebRTC camera capture and realtime filters.
+Lab 4 uses WebRTC camera stream and realtime filters.
 
-Available filters include blur, grayscale, invert, sepia, and Sobel edge.
+Open `lab4/index.html`.
 
-Run with HTTPS (`node server.js`) and open `lab4/index.html`.
+For local camera testing, run the included HTTPS server.
 
 Tested browsers:
 

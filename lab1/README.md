@@ -1,8 +1,8 @@
 # Lab 1
 
-This lab is a simple HTML5 HLS player. It can play, pause, stop, seek, and switch playlist items.
+Lab 1 is an HTML5 HLS video player.
 
-Run with a local server from `lab1/src` and open `index.html`.
+Open `lab1/index.html`.
 
 Tested browsers:
 

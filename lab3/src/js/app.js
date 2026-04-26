@@ -87,7 +87,7 @@ function initialize() {
     window.addEventListener("resize", onResize);
 
     arToolkitContext = new THREEx.ArToolkitContext({
-        cameraParametersUrl: "data/camera_para.dat",
+        cameraParametersUrl: "src/data/camera_para.dat",
         detectionMode: "mono"
     });
 
@@ -100,7 +100,7 @@ function initialize() {
 
     new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
         type: "pattern",
-        patternUrl: "data/hiro.patt"
+        patternUrl: "src/data/hiro.patt"
     });
 
     stationRoot = buildUgsStationModel();

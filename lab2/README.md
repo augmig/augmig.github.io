@@ -1,10 +1,10 @@
 # Lab 2
 
-This lab is an A-Frame VR scene with a point cloud model.
+Lab 2 is an A-Frame VR scene with object controls.
 
-You can rotate, move, zoom, reset, and hide/load the object using buttons or keyboard keys.
+Open `lab2/index.html`.
 
-Open `lab2/index.html` through GitHub Pages or a local server.
+Buttons and keyboard can rotate, move, zoom, reset, and load/hide the point-cloud object.
 
 Tested browsers:
 

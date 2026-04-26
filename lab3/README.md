@@ -1,8 +1,10 @@
 # Lab 3
 
-This lab is an AR app with a model on the Hiro marker.
+Lab 3 is an AR app using the Hiro marker.
 
-Run it with HTTPS and open `lab3/src/index.html`.
+Open `lab3/index.html`.
+
+If camera access is blocked, run it from HTTPS or localhost.
 
 Tested browsers:
 

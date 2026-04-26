@@ -1,17 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lab 1</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    a { display: inline-block; margin-right: 12px; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab 1. HTML5 HLS Player</title>
+  <link href="src/css/style.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Lab 1</h1>
-  <p><a href="src/index.html">Open lab page</a></p>
-  <p><a href="../index.html">Back to main page</a></p>
+  <p style="margin:16px 16px 0;"><a href="../index.html">Back to main page</a></p>
+  <main class="page">
+    <section class="card">
+      <h1>My first HLS player</h1>
+      <p class="lead">HTML5 HLS player built with hls.js.</p>
+
+      <video
+        id="hlsPlayer"
+        controls
+        preload="metadata"
+        width="960"
+        height="540">
+        Your browser does not support the HTML5 video tag.
+      </video>
+
+      <div class="controls" aria-label="Player controls">
+        <button type="button" id="playBtn">Play</button>
+        <button type="button" id="pauseBtn">Pause</button>
+        <button type="button" id="stopBtn">Stop</button>
+        <button type="button" id="forwardBtn">Jump +5 sec</button>
+        <button type="button" id="backwardBtn">Jump -5 sec</button>
+      </div>
+
+      <section class="playlist" aria-labelledby="playlistTitle">
+        <h2 id="playlistTitle">Playlist</h2>
+
+        <div class="playlist-row">
+          <input
+            id="url1"
+            type="url"
+            value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"
+            aria-label="Playlist URL 1" />
+          <button type="button" class="loadBtn" data-input="url1" data-feature="playlist-load">Load</button>
+        </div>
+
+        <div class="playlist-row">
+          <input
+            id="url2"
+            type="url"
+            value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+            aria-label="Playlist URL 2" />
+          <button type="button" class="loadBtn" data-input="url2" data-feature="playlist-load">Load</button>
+        </div>
+
+        <button type="button" id="shuffleBtn" data-feature="playlist-shuffle">Shuffle playlist item</button>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite">Loading default stream...</p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="src/js/control.js"></script>
 </body>
 </html>
