@@ -18,8 +18,7 @@ KEY_FILE = Path(__file__).resolve().parent / "key.pem"
 if not CERT_FILE.exists() or not KEY_FILE.exists():
     raise SystemExit(
         "Missing cert.pem/key.pem. Generate them first with:\n"
-        "openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem "
-        "-days 365 -nodes -subj '/CN=localhost'"
+        "./generate_cert.sh"
     )
 
 class ArLabHandler(SimpleHTTPRequestHandler):

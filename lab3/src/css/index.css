@@ -5,34 +5,54 @@ body {
     height: 100%;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
-    background: #111827;
+    background: #000;
 }
 
-video {
-    position: absolute;
-    top: 0;
-    left: 0;
+a-scene {
+    position: fixed !important;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 0;
+}
+
+.a-canvas,
+canvas,
+video {
+    position: fixed !important;
+    inset: 0;
+    width: 100vw !important;
+    height: 100vh !important;
     object-fit: cover;
 }
 
-canvas {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
+.back-link-wrap {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 25;
+    margin: 0;
+}
+
+.back-link {
+    background: rgba(17, 24, 39, 0.82);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 .panel {
     position: fixed;
     z-index: 20;
-    top: 12px;
+    top: 46px;
     left: 12px;
     right: 12px;
-    max-width: 620px;
+    max-width: 650px;
     padding: 14px 16px;
     border-radius: 14px;
-    background: rgba(17, 24, 39, 0.82);
+    background: rgba(17, 24, 39, 0.74);
     color: #f9fafb;
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(6px);
@@ -41,7 +61,6 @@ canvas {
 .panel h1 {
     margin: 0 0 6px 0;
     font-size: 20px;
-    letter-spacing: 0.4px;
 }
 
 .panel p {
@@ -79,14 +98,10 @@ button:focus {
     font-weight: 700;
 }
 
-.marker-link:hover,
-.marker-link:focus {
-    color: #fde047;
-}
-
 .status {
-    color: #d1d5db;
+    color: #e5e7eb;
     font-size: 13px !important;
+    font-weight: 700;
 }
 
 @media (max-width: 560px) {
